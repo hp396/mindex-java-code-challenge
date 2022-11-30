@@ -77,10 +77,97 @@ This new type should have a new REST endpoint created for it. This new endpoint 
 the fully filled out ReportingStructure for the specified employeeId. The values should be computed on the fly and will 
 not be persisted.
 
+```
+* Retrieve Reporting Structure
+    * HTTP Method: GET 
+    * URL: localhost:8080/employee/{id}/reporting
+    * RESPONSE: ReportingStructure
+```
+
+The ReportingStructure has a JSON schema of:
+
+```json
+{
+    "employee": {
+        "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f",
+        "firstName": "John",
+        "lastName": "Lennon",
+        "position": "Development Manager",
+        "department": "Engineering",
+        "directReports": [
+            {
+                "employeeId": "b7839309-3348-463b-a7e3-5de1c168beb3",
+                "firstName": null,
+                "lastName": null,
+                "position": null,
+                "department": null,
+                "directReports": null
+            },
+            {
+                "employeeId": "03aa1462-ffa9-4978-901b-7c001562cf6f",
+                "firstName": null,
+                "lastName": null,
+                "position": null,
+                "department": null,
+                "directReports": null
+            }
+        ]
+    },
+    "numberOfReports": 4
+}
+```
+
 ### Task 2
 Create a new type, Compensation. A Compensation has the following fields: employee, salary, and effectiveDate. Create 
 two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the 
 Compensation from the persistence layer.
 
+```
+* CREATE
+    * HTTP Method: POST 
+    * URL: localhost:8080/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET 
+    * URL: localhost:8080/compensation/{id}
+    * RESPONSE: Compensation
+```
+
+For all endpoints that require an "id" in the URL, this is the "employeeId" field.
+
+The Compensation has a JSON schema of:
+
+```json
+{
+  "employee": {
+    "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "firstName": "John",
+    "lastName": "Lennon",
+    "position": "Development Manager",
+    "department": "Engineering",
+    "directReports": [
+      {
+        "employeeId": "b7839309-3348-463b-a7e3-5de1c168beb3",
+        "firstName": null,
+        "lastName": null,
+        "position": null,
+        "department": null,
+        "directReports": null
+      },
+      {
+        "employeeId": "03aa1462-ffa9-4978-901b-7c001562cf6f",
+        "firstName": null,
+        "lastName": null,
+        "position": null,
+        "department": null,
+        "directReports": null
+      }
+    ]
+  },
+  "effectiveDate": "2022-11-27T00:00:00.000+0000",
+  "salary": 123100.35
+}
+```
 ## Delivery
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.
